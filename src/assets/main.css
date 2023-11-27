@@ -1,0 +1,48 @@
+* {
+  font-family: 'Helvetica', sans-serif; /* Menambahkan 'sans-serif' sebagai cadangan font */
+  text-decoration: none;
+  box-sizing: border-box; /* Menambahkan box-sizing untuk menghitung ukuran elemen dengan lebih baik */
+}
+
+.container1 {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+  margin: 0 auto; /* Menengahkan container1 di tengah */
+  max-width: 800px; /* Menambahkan batas maksimum lebar */
+}
+
+.container2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  gap: 2rem;
+  align-items: center; /* Menengahkan elemen header */
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loginButton,
+.logoutButton {
+  background-color: #3498db; /* Mengganti warna dengan warna biru yang lebih standar */
+  color: #fff; /* Menggunakan warna teks putih */
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer; /* Menambahkan kursor pointer */
+  transition: background-color 0.3s ease; /* Menambahkan transisi warna latar belakang */
+}
+
+.loginButton:hover,
+.logoutButton:hover {
+  background-color: #2980b9; /* Mengganti warna latar belakang saat dihover */
+}
