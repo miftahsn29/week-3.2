@@ -1,17 +1,31 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useAuthStore } from '@/stores/authenticated';
+import { useAuthStore } from '@/stores/auth';
 import { useRouter } from 'vue-router';
-
+import axios from "axios";
 const router = useRouter();
 const auth = useAuthStore();
 const username = ref('');
 const password = ref('');
 
-const performLogin = () => {
-  auth.login(username.value, password.value);
-  router.push('/');
+const forLogin = async () => {
+  if(username.value === "" || password.value === "") {
+    alert("Username or Password can't be empty")
+  } else {
+  try {
+    const response = await axios.post('http://localhost:3000/login', {
+      username: username.value,
+      password: password.value,
+    })
+    
+    auth.performLogin(username.value, password.value)
+    console.log(response);
+  } catch (error) {
+    console.error('Login error:', error);
+  }
 }
+}
+
 </script>
 
 <style scoped>
@@ -57,7 +71,8 @@ const performLogin = () => {
     <div class="inputButton">
       <input class="input" type="text" v-model="username" placeholder="Username">
       <input class="input" type="password" v-model="password" placeholder="Password">
-      <button class="button" @click="performLogin">Sign in</button>
+      <button class="button" @click="forLogin">Sign in</button>
     </div>
   </div>
 </template>
+@/stores/auth

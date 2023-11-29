@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import { useAuthStore } from '@/stores/authenticated';
+import { useAuthStore } from '@/stores/auth';
 import { useRouter } from 'vue-router';
 const auth = useAuthStore();
 const router = useRouter();
 
 const handleLogout = () => {
-    auth.logout();
+    auth.performLogout;
     router.push('/login');
 };
 
-const promptLogin = () => {
-    alert("the page will open after user login.");
-};
+console.log(auth.username)
+
 </script>
 
 <template>
@@ -20,23 +19,11 @@ const promptLogin = () => {
             <div class="navigation-header">
                 <router-link to="/">Home</router-link>
                 <router-link to="/about">About</router-link>
-                <router-link
-                    to="/restricted"
-                    v-if="auth.isAuthenticated"
-                >
-                    Restricted Page
-                </router-link>
-                <router-link
-                    to="/login"
-                    v-else
-                    @click="promptLogin()"
-                >
-                    Restricted Page
-                </router-link>
+                <router-link to="/restricted">Restricted Page</router-link>
             </div>
             <div class="login-section">
-                <p v-if="auth.isAuthenticated">{{ auth.username }}</p>
-                <div v-if="auth.isAuthenticated">
+                <p v-if="auth.isLoggedIn()">{{ auth.username }}</p>
+                <div v-if="auth.isLoggedIn()">
                     <router-link class="logout-button" to="/login" @click="handleLogout()">Logout</router-link>
                 </div>
                 <div v-else>
@@ -91,3 +78,4 @@ const promptLogin = () => {
   background-color: #2980b9;
 }
 </style>
+@/stores/auth
