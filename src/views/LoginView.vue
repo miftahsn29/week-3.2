@@ -22,10 +22,13 @@ const forLogin = async () => {
     console.log(response);
   } catch (error) {
     console.error('Login error:', error);
+    
+    if (axios.isAxiosError(error) && error.response && error.response.status === 402 || 403) {
+        alert('Incorrect username or password');
   }
 }
 }
-
+}
 </script>
 
 <style scoped>

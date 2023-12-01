@@ -4,8 +4,8 @@ import { useRouter } from 'vue-router';
 const auth = useAuthStore();
 const router = useRouter();
 
-const handleLogout = () => {
-    auth.performLogout;
+const forLogout = () => {
+    auth.performLogout();
     router.push('/login');
 };
 
@@ -24,10 +24,10 @@ console.log(auth.username)
             <div class="login-section">
                 <p v-if="auth.isLoggedIn()">{{ auth.username }}</p>
                 <div v-if="auth.isLoggedIn()">
-                    <router-link class="logout-button" to="/login" @click="handleLogout()">Logout</router-link>
+                    <router-link class="logout-button" to="/login" @click="forLogout()">Logout</router-link>
                 </div>
                 <div v-else>
-                    <router-link class="login-button" to="login">Login</router-link>
+                    <router-link class="login-button" to="/login">Login</router-link>
                 </div>
             </div>
         </div>
